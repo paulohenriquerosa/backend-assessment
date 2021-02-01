@@ -1,114 +1,106 @@
-Backend Assessment
+<h1 align="center">
+	<img alt="Logo" src="https://github.com/paulohenriquerosa/teste-t10/blob/main/img/logo.png" width="200px" /> 
+</h1>
 
-Olá! 🖖🏽
-
-Nossa intenção é, através deste (breve) desafio, avaliar a habilidade técnica percebida ao empregar e desenvolver uma solução para o problema aqui descrito.
-
-## Domínio Problema
-
-Uma instituição financeira contratou os serviços da T10 buscando maior **agilidade dos dados** através da metrificação de processos que, até então, não eram _observados_ (apropriadamente). Um dos processos é a solicitação do produto débito automático de empresas parceiras.
-A operação é realizada manualmente e vai ser automatizada por este serviço, que vai permitir que outros serviços consumam, de forma livre, de seus eventos operacionais.
-
-# Escopo
-
-## Casos de Uso
-
-1. Autenticação e acesso a plataforma
-
-Um usuário autenticado,
-
-2. solicita uma ativação de débito automático
-3. cancela uma solicitação de ativação
-4. aprova uma solicitação de ativação
-5. rejeita uma solicitação de ativação
-6. visualiza uma solicitação
+<h3 align="center">
+  Backend Assessment - T10
+</h3>
 
 
-Diagrama do [modelo de eventos](img/model.jpg).
+<p align="center">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/paulohenriquerosa/teste-t10">
 
-Observações **importantes** sobre o modelo:
+  <a href="https://www.linkedin.com/in/eliasgcf/">
+    <img alt="Made by" src="https://img.shields.io/badge/made%20by-Paulo%20Henrique-gree">
+  </a>
+  
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/paulohenriquerosa/teste-t10">
+  
+  <a href="https://github.com/paulohenriquerosa/teste-t10/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/paulohenriquerosa/teste-t10">
+  </a>
+  
+  <a href="https://github.com/paulohenriquerosa/teste-t10/issues">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/paulohenriquerosa/teste-t10">
+  </a>
 
-  - É uma representação do domínio _exclusivamente_.
+</p>
 
-  - Não é mandatório ser modelado usando CQRS nem event-driven.
+<p align="center">
+  <a href="#-challenge">Challenge</a>&nbsp;&nbsp;&nbsp;|&nbsp;
+  <a href="#-getting-started">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-routes">Routes</a>&nbsp;&nbsp;&nbsp;
+</p>
 
-  - Não é mandatório implementar o EmailServer
+<p id="insomniaButton" align="center">
+  <a href="" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+</p>
 
-## Requisitos
+## 👨🏻‍💻 Challenge
 
-Especifica o contexto em que a aplicação será operacionalizada
+A financial institution hired the services of T10 seeking greater data agility through the metrification of processes that, until then, were not observed (correctly). One of the processes is to request the automatic debit product from partner companies. The operation is performed manually and will be automated by this service, which will allow other services to freely consume their operational events.
 
-### Não funcionais
 
-1. 30 empresas parceiras
-1. 5000 usuários simultâneos
-1. 100 reqs/s 
+## 💻 Getting started
 
-### Funcionais
+### Requirements
 
-#### Tecnologias
+- [Python3](https://www.python.org/)
+- [Virtualenv](https://virtualenv.pypa.io/en/latest/index.html)
+- [Docker](https://docs.docker.com/engine/install/)
 
-- implementação: `golang | elixir | python`
-- armazenamento: `postgres | mongodb`
-- **não-mandatório** broker: `kafka | rabbitmq`
 
-#### Protocolos
 
-- pontos de entrada: `http`
-- autenticação: `simple jwt`
+**Clone the project and access the folder**
 
-#### Padrões
+```bash
+$ git clone https://github.com/paulohenriquerosa/teste-t10.git && cd teste-t10
+```
 
-Bonus points:
+**Follow the steps below**
 
-- arquitetural: `cqrs & hexagonal`
-- design: `ddd & solid`
-- message bus as stream
+```bash
+# Create a Virtual environment
+$ virtualenv .venv
 
-### 3rd parties
+# Enable the virtual environment
+$ source .venv/bin/activate
 
-O uso de bibliotecas externas é **livre**.
+# Setup app folder to become a package and install all dependecies
+$ pip install -e .
 
-### Deployment
+# Disable and enable the virtual environment for load the changes
+$ deactivate && source .venv/bin/activate
 
-A forma como a aplicação será disponibilizada é **livre**. Fica a critério do candidato, por exemplo, usar algum PaaS a fim de reduzir a complexidade bem como utilizar receitas prontas através de ferramentas de automatização e.g. `ansible+dockercompose`.
+# Create the instance of postgreSQL using docker
+$ docker run --name t10_database \
+             -e POSTGRES_PASSWORD=docker \
+             -p 5432:5432 -d postgres
 
-No entanto, é esperado bom senso na documentação caso sejam usadas soluções @ `localhost`.
 
-# Entrega
+# Access the principal file
+$ cd app/shared/infra/http
 
-A _Release_ 0.1 🚀 consiste na implementação de um servidor web que implementa os casos de uso listados acima respeitando os requisitos funcionais e não funcionais. Fica a critério do desenvolvedor como os testes serão escritos, os scripts de _data migration_, os _schemas_ de entrada e saída da api e todas as outras definições que não foram listadas neste documento.
+# To finish, run the api service
+$ uvicorn main:app --reload
 
-## Avaliação
+# Well done, project is started!
+```
 
-Critérios ordenados por ordem de peso decrescente:
+To run the tests, in the `root folder` run the following command:
+```bash
+$ pytest
+```
+## 📝  Routes 
 
-1. Correção (_correctness_) da solução
+To see the routes available in the api just type the following link in your browser.
 
-   - a fim de solucionar o [domínio-problema](#domínio-problema)
-   - a fim de cumprir os [casos de uso](#casos-de-uso)
-   - ao implementar os [requisitos](#requisitos) especificados
+```bash
+$ http://localhost:8000/docs
+```
+In this link you will see the resources that you can access, as well as the parameters and responses for each route.
 
-1. Testes
-1. Organização, documentação e clareza na estruturação do projeto
-1. Estilo, legibilidade e simplicidade no código
-1. Escolhas e uso de 3rd parties
-1. Padrões de segurança
+To request the available routes you can use the REST Client [Insominia](https://insomnia.rest/) and import the `Insomnia.json` file that is in the repository
 
-#### Bonus points 🏆
+---
 
-1. Teste de stress
-1. Boas práticas na modelagem e armazenamento de dados
-
-## Eliminatórios
-
-1. Copiar ou "se inspirar" em código alheio é _veementemente_ vetado ✋
-
-## Submissão
-
-Ao finalizar a implementação, o diretório da solução pode ser submetido de duas formas:
-
-1. através de um _fork_ e um _pull request_ neste repositório ou
-1. por email, compactado, para `it@t10.digital` com o assunto `Backend Assessment`
-
-Feito 🤘

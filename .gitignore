@@ -1,0 +1,6 @@
+.venv
+.vscode
+app.egg-info
+build
+dist
+__pycache__
